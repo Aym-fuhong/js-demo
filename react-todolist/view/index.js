@@ -5,57 +5,53 @@ const App = React.createClass({
     getInitialState: function () {
 
         return {
-            todolist: [],
+            list: [],
             temp: []
         }
     },
 
-    addEvent: function (event) {
-        const task = this.refs.addTask;
-
+    addEvent: function (event, value) {
         if (event.key != "Enter") {
             return;
         }
-        if (event.key === "Enter" && task.value === '') {
+        if (event.key === "Enter" && value === '') {
             alert("can't input empty task");
             return;
         }
 
-        let todolist = this.state.todolist;
+        let todolist = this.state.list;
         const todo = {
             completed: false,
-            value: task.value
+            value: value
         };
         todolist.push(todo);
         this.setState({temp: todolist});
     },
 
     deleteEvent: function (index) {
-        const todolist = this.state.todolist;
+        const todolist = this.state.list;
         todolist.splice(index, 1);
-        this.setState({todolist});
         this.setState({temp: todolist});
     },
 
     changeState: function (index) {
-        const todolist = this.state.todolist;
+        const todolist = this.state.list;
         todolist[index].completed = !todolist[index].completed;
-        this.setState({todolist});
         this.setState({temp: todolist});
     },
 
     completed: function () {
-        let temp = this.state.todolist;
+        let temp = this.state.list;
         temp = temp.filter(todo => todo.completed);
         this.setState({temp});
     },
 
     all: function () {
-        this.setState({temp: this.state.todolist});
+        this.setState({temp: this.state.list});
     },
 
     active: function () {
-        let temp = this.state.todolist;
+        let temp = this.state.list;
         temp = temp.filter(todo => !todo.completed);
         this.setState({temp});
     },
@@ -64,14 +60,10 @@ const App = React.createClass({
 
         return <div className="center-block">
             <Header/>
-            <div className="inputBox text-center">
-                <label>
-                    <input type="text" ref="addTask" placeholder="what needs to be done" onKeyPress={this.addEvent}/>
-                </label>
-            </div>
+            <Input onAdd={this.addEvent}/>
             <TodoList temp={this.state.temp} onDelete={this.deleteEvent} onChange={this.changeState}/>
             <Footer className="text-center" onCompleted={this.completed} onAll={this.all} onActive={this.active}
-                    elements={this.state.todolist}/>
+                    elements={this.state.list}/>
         </div>
     }
 });
@@ -81,6 +73,23 @@ const Header = React.createClass({
     render: function () {
         return <div className="title text-center">
             <h1>todolist</h1>
+        </div>
+    }
+});
+
+const Input = React.createClass({
+
+    onAdd: function (event) {
+        let value = this.refs.addTask.value;
+        this.props.onAdd(event, value);
+    },
+
+    render: function () {
+        return <div className="inputBox text-center">
+            <label>
+                <input type="text" ref="addTask" placeholder="what needs to be done"
+                       onKeyPress={this.onAdd.bind(this)}/>
+            </label>
         </div>
     }
 });
@@ -95,7 +104,7 @@ const TodoList = React.createClass({
     },
 
     render: function () {
-        const items = this.props.temp.map((element, index)=> {
+        const items = this.props.temp.map((element, index) => {
             return <div key={index} className="todos">
                 <input type="checkbox" checked={element.completed}
                        onClick={this.change.bind(this, index)}/>
@@ -115,7 +124,7 @@ const Footer = React.createClass({
 
     render: function () {
         const element = this.props.elements.map(element => (element.completed ? 0 : 1)).reduce((a, b) => (a + b), 0);
-        return <div className="text-center footer" >
+        return <div className="text-center footer">
             <button className="left">{element} items left</button>
             <button className="all" onClick={this.props.onAll}>all</button>
             <button className="completed" onClick={this.props.onCompleted}>Completed</button>

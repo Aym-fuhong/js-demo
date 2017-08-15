@@ -1,5 +1,4 @@
 'use strict';
-
 const App = React.createClass({
 
     getInitialState: function () {

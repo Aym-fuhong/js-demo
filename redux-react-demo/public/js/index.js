@@ -3,6 +3,8 @@ import {render} from 'react-dom';
 import {createStore} from "redux";
 import reducer from './reducers/reducer';
 import AddTodo from './component/AddTodo';
+import TodoList from './component/TodoList';
+import Footer from './component/Footer';
 
 const store = createStore(reducer);
 
@@ -34,58 +36,12 @@ class App extends React.Component {
 
     render() {
         return <div>
-            <TodoList todos={this.filterTodos()} onToggle={this.toggle.bind(this)}/>
             <AddTodo onAdd={this.add}/>
+            <TodoList todos={this.filterTodos()} onToggle={this.toggle.bind(this)}/>
             <Footer onFilter={this.filter} filterName={store.getState().filterName}/>
         </div>
     }
 }
-
-class Footer extends React.Component {
-    onFilter(type) {
-        this.props.onFilter(type);
-    }
-
-    render() {
-        const links = ['ALL', 'ACTIVE', 'COMPLETED'].map((filterName, index) => {
-            return <a key={index} style={{"textDecoration": this.props.filterName === filterName ? "underline" : ""}}
-                      onClick={this.onFilter.bind(this, filterName)}>{filterName}&nbsp;&nbsp;</a>
-
-        });
-        return <div>
-            {links}
-        </div>
-    }
-}
-
-
-class TodoList extends React.Component {
-    render() {
-        return <div>
-            {this.props.todos.map((todo, index) => {
-                return <div key={index}><input type="checkbox" checked={todo.isDone} onClick={this.props.onToggle.bind(this, index)}/><span style={{
-                    "display": "inline",
-                    "textDecoration": todo.isDone ? "line-through" : ""
-                }}>{todo.text}</span></div>
-            })}
-        </div>
-    }
-}
-
-// class AddTodo extends React.Component {
-//     add() {
-//         const text = this.refs.myInput.value;
-//         this.props.onAdd(text);
-//         this.refs.myInput.value = '';
-//     }
-//
-//     render() {
-//         return <div>
-//             <input type="text" ref="myInput"/>
-//             <button onClick={this.add.bind(this)}>添加</button>
-//         </div>
-//     }
-// }
 
 
 export default function renderFunction() {

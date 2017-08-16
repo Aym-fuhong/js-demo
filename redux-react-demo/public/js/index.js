@@ -33,7 +33,6 @@ class App extends React.Component {
         }
     }
 
-
     render() {
         return <div>
             <AddTodo onAdd={this.add}/>

@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon server.js",
     "test": "webpack -d --watch",
-    "wpw": "webpack"
+    "wpw": "webpack -w"
   },
   "keywords": [],
   "author": "",

@@ -5,6 +5,7 @@ class Header extends React.Component {
     onAdd() {
         let text = this.inputText.value;
         this.props.add(text);
+        this.inputText.value = '';
     }
 
     render() {

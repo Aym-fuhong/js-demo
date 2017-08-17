@@ -4,7 +4,7 @@ import {onToggle, onDelete} from '../actions/todoList';
 
 const mapStateToProps = (state) => {
     return {
-        todos: state.header
+        todos: getFilterList(state.header, state.footer)
     };
 };
 
@@ -18,6 +18,13 @@ const mapDispatchToProps = dispatch => {
     }
 };
 
+function getFilterList(todos, filterName) {
+    switch(filterName){
+        case 'ACTIVE': return todos.filter(todo => todo.isDone === true);
+        case 'COMPLETED': return todos.filter(todo => todo.isDone === false);
+        default: return todos;
+    }
+}
 
 export default connect(
     mapStateToProps,

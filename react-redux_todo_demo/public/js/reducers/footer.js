@@ -1,9 +1,9 @@
-// export default function reducer(state = {}, action){
-//     switch (action.type){
-//         // case 'TOGGLE':
-//         //     console.log(state, 'todolist reducer state');
-//         //     state[action.index].isDone = ! state[action.index].isDone;
-//         //     return [...state];
-//     }
-//     return [...state];
-// }
+export default function reducer(state = {filterName: 'ALL'}, action){
+    switch (action.type){
+        // case 'FILTER':
+        //     console.log(state, 'todolist reducer state');
+        //
+        //     return [...state];
+    }
+    return [...state];
+}

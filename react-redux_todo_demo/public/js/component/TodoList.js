@@ -8,7 +8,9 @@ class TodoList extends React.Component {
                                            onClick={this.props.onToggle.bind(this, index)}/><span style={{
                 "display": "inline",
                 "textDecoration": todo.isDone ? "line-through" : ""
-            }}>{todo.text}</span></div>
+            }}>{todo.text}</span>
+            <input type="button" value="delete" onClick={this.props.onDelete.bind(this, index)}/>
+            </div>
         });
 
         return <div>

@@ -4,8 +4,10 @@ export default function reducer(state = {todos: []}, action) {
             // state.todos.push({text: action.text, isDone: false});
             return [...state, {text: action.text, isDone: false}];
         case 'TOGGLE':
-            console.log(state, 'todolist reducer state');
             state[action.index].isDone = !state[action.index].isDone;
+            return [...state];
+        case 'FILTER':
+            state.splice(action.index, 1);
             return [...state];
         default: {
             return [...state];

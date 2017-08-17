@@ -6,7 +6,7 @@ export default function reducer(state = {todos: []}, action) {
         case 'TOGGLE':
             state[action.index].isDone = !state[action.index].isDone;
             return [...state];
-        case 'FILTER':
+        case 'DELETE':
             state.splice(action.index, 1);
             return [...state];
         default: {

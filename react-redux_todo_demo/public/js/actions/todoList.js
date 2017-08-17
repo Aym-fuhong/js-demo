@@ -7,7 +7,7 @@ export const onToggle = index => {
 
 export const onDelete = index => {
     return {
-        type: "FILTER",
+        type: "DELETE",
         index
     }
 };

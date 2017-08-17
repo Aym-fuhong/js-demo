@@ -3,7 +3,6 @@ import TodoList from '../component/TodoList';
 import {onToggle, onDelete} from '../actions/todoList';
 
 const mapStateToProps = (state) => {
-    console.log(state, 'container state');
     return {
         todos: state.header
     };

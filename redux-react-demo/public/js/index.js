@@ -2,7 +2,7 @@ import React from 'react';
 import {render} from 'react-dom';
 import {createStore} from "redux";
 import reducer from './reducers/reducer';
-import AddTodo from './component/AddTodo';
+import AddTodo from './component/InputTodo';
 import TodoList from './component/TodoList';
 import Footer from './component/Footer';
 
@@ -16,6 +16,10 @@ class App extends React.Component {
 
     toggle(index) {
         store.dispatch({type: 'TOGGLE', index});
+    }
+
+    delete(index) {
+        store.dispatch({type: 'DELETE', index});
     }
 
     filter(filterName) {
@@ -36,7 +40,8 @@ class App extends React.Component {
     render() {
         return <div>
             <AddTodo onAdd={this.add}/>
-            <TodoList todos={this.filterTodos()} onToggle={this.toggle.bind(this)}/>
+            <TodoList todos={this.filterTodos()} onToggle={this.toggle.bind(this)}
+                      onDelete={this.delete.bind(this)}/>
             <Footer onFilter={this.filter} filterName={store.getState().filterName}/>
         </div>
     }

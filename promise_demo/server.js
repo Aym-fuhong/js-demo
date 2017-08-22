@@ -17,8 +17,20 @@ app.use(session({
     resave: true,
     saveUninitialized: true,
 }));
-var server = app.listen(3000, function () {
+
+app.get("/",(req,res)=>{
+    res.send("hello")
+})
+
+app.post('/userInfo', (req, res) => {
+    const result = req.body;
+    console.log(result, 'server result');
+    res.status(201).send({name: 3, email: '123@123.com'});
+});
+
+var server = app.listen(3001, function () {
     var port = server.address().port;
     console.log('listening at port %s', port);
 });
 
+module.exports = app;

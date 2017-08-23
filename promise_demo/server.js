@@ -20,7 +20,7 @@ app.use(session({
 
 app.get("/",(req,res)=>{
     res.send("hello")
-})
+});
 
 app.post('/userInfo', (req, res) => {
     const result = req.body;

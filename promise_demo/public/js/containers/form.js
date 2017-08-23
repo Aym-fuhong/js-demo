@@ -4,9 +4,9 @@ import {onSubmitForm} from '../actions/form'
 
 const mapStateToProps = state => {
     return {
-        userInfo: state.form || {}
+        userInfo: state.form
     }
-}
+};
 
 const mapDispatchToProps = dispatch => {
         return {

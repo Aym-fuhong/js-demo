@@ -1,7 +1,12 @@
 var path = require('path');
+require("babel-polyfill");
 
 module.exports = {
-    entry: './public/js/index.js',
+    entry: [
+        './public/js/index.js',
+        'babel-polyfill'
+
+    ],
     output: {
         path: path.join(__dirname, '/dist'),
         filename: 'bundle.js'
@@ -11,7 +16,7 @@ module.exports = {
     },
     module: {
         loaders: [
-            { test: /\.js|jsx$/, loaders: ['babel'] }
+            {test: /\.js|jsx$/, loaders: ['babel']}
         ]
     }
-}
+};

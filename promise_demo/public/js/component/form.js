@@ -19,9 +19,10 @@ export default class Form extends React.Component {
                 <input type="input" placeholder='phone' name="phone"/>
                 <input type="submit" value="submit"/>
             </form>
-            {/*<div>*/}
-            {/*{this.props.userInfo}*/}
-            {/*</div>*/}
+            <div>
+                <p>your name is: </p>
+            {this.props.userInfo.name}
+            </div>
         </div>
     }
 }

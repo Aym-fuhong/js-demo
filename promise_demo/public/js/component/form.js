@@ -14,9 +14,9 @@ export default class Form extends React.Component {
     render() {
         return <div>
             <form id="form" onSubmit={this.submitForm.bind(this)}>
-                <input type="input" placeholder="name" name="name"/>
-                <input type="input" placeholder='email' name="email"/>
-                <input type="input" placeholder='phone' name="phone"/>
+                <input type="input" placeholder="name" name="name"/><br/>
+                <input type="input" placeholder='email' name="email"/><br/>
+                <input type="input" placeholder='phone' name="phone"/><br/>
                 <input type="submit" value="submit"/>
             </form>
             <div>
